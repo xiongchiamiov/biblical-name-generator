@@ -38,8 +38,12 @@ File.open('NHEB.txt', 'r').each_line do |line|
          word.downcase!
          startOfSentence = false
       end
-      if word.end_with? '.'
+      if word.end_with? *%W{. ! ? " ' :}
          startOfSentence = true
+      end
+      # Quoted sentences don't come after periods.
+      if word.start_with? '"' or word.start_with? "'"
+         next
       end
       
       # Punctuation is harmful for our purposes.

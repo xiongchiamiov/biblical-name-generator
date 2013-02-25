@@ -52,7 +52,7 @@ File.open('NHEB.txt', 'r').each_line do |line|
    end
 end
 
-names.each do |name, count|
-   puts "#{count}: #{name}"
+names.sort_by {|name, count| count}.reverse.each do |tuple|
+   puts "#{tuple[1]}: #{tuple[0]}"
 end
 

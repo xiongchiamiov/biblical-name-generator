@@ -47,8 +47,10 @@ File.open('NHEB.txt', 'r').each_line do |line|
       # Possessive-stripping.
       word.sub! "'s", ''
       
+      # We want words that are title-cased, but not those that are just plain
+      # ol' capitalized all the way (due to being part of a God-quote).
       # http://stackoverflow.com/a/8529619/120999
-      if word[0].match /\p{Upper}/
+      if word[0].match /\p{Upper}/ and not word.match /^\p{Upper}+$/
          names[word] += 1
       end
    end

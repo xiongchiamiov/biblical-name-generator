@@ -24,7 +24,7 @@ File.open('NHEB.txt', 'r').each_line do |line|
    
    # Strip off the book, chapter and verse.
    #print line
-   words = line.split.slice 2..-1
+   words = line.split.drop 2
    next if not words
    
    # When there are sentence breaks in the middle of the verse, we need to

@@ -61,7 +61,8 @@ File.open('NHEB.txt', 'r').each_line do |line|
 end
 
 # Some names are used a lot - so much they aren't very interesting.
-blacklist = Set.new %W{I Lord God Israel Jerusalem Jesus Moses Egypt}
+blacklist = Set.new %W{I Lord God Israel Jerusalem Jesus Moses Egypt King Queen
+Good News Man Woman David Christ Holy Spirit Father Pharaoh Most High}
 names.delete_if {|name| blacklist.include? name}
 
 names.sort_by {|name, count| count}.reverse.each do |tuple|

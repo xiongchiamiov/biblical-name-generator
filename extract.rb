@@ -46,10 +46,10 @@ File.open('NHEB.txt', 'r').each_line do |line|
          next
       end
       
-      # Punctuation is harmful for our purposes.
-      word.tr! ',.;:!?"()[]', ''
       # Possessive-stripping.
       word.sub! "'s", ''
+      # Punctuation is harmful for our purposes.
+      word.tr! ',.;:!?"\'()[]', ''
       
       # We want words that are title-cased, but not those that are just plain
       # ol' capitalized all the way (due to being part of a God-quote).

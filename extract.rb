@@ -5,6 +5,8 @@
 # May you share freely, never taking more than you give.
 # May you find love and love everyone you find.
 
+require 'set'
+
 names = {}
 names.default = 0
 
@@ -51,6 +53,10 @@ File.open('NHEB.txt', 'r').each_line do |line|
       end
    end
 end
+
+# Some names are used a lot - so much they aren't very interesting.
+blacklist = Set.new %W{I Lord God Israel Jerusalem Jesus Moses Egypt}
+names.delete_if {|name| blacklist.include? name}
 
 names.sort_by {|name, count| count}.reverse.each do |tuple|
    begin

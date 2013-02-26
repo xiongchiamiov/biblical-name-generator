@@ -65,11 +65,11 @@ blacklist = Set.new %W{I Lord God Israel Jerusalem Jesus Moses Egypt King Queen
 Good News Man Woman David Christ Holy Spirit Father Pharaoh Most High}
 names.delete_if {|name| blacklist.include? name}
 
-names.sort_by {|name, count| count}.reverse.each do |tuple|
-   begin
+begin
+   names.sort_by {|name, count| count}.reverse.each do |tuple|
       puts "#{tuple[1]}: #{tuple[0]}"
-   rescue Errno::EPIPE
-      break
    end
+rescue Errno::EPIPE
+   # Swallow and stop writing to stdout.
 end
 

@@ -75,8 +75,8 @@ names.delete_if {|name| blacklist.include? name}
 begin
    case outputFormat
    when 'debug'
-      names.sort_by {|name, count| count}.reverse.each do |tuple|
-         puts "#{tuple[1]}: #{tuple[0]}"
+      names.each do |name, count|
+         puts "#{count}: #{name}"
       end
    when 'text'
       names.keys.each {|name| puts name}

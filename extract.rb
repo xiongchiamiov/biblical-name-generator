@@ -7,6 +7,13 @@
 
 require 'set'
 
+outputFormat = ARGV[0] || nil
+formats = %W{debug text}
+if ARGV.length != 1 or not formats.include? outputFormat
+   puts "Usage: #{$0.split('/').last} [#{formats.join '|'}]"
+   exit 1
+end
+
 names = {}
 names.default = 0
 
@@ -66,8 +73,13 @@ Good News Man Woman David Christ Holy Spirit Father Pharaoh Most High}
 names.delete_if {|name| blacklist.include? name}
 
 begin
-   names.sort_by {|name, count| count}.reverse.each do |tuple|
-      puts "#{tuple[1]}: #{tuple[0]}"
+   case outputFormat
+   when 'debug'
+      names.sort_by {|name, count| count}.reverse.each do |tuple|
+         puts "#{tuple[1]}: #{tuple[0]}"
+      end
+   when 'text'
+      names.keys.each {|name| puts name}
    end
 rescue Errno::EPIPE
    # Swallow and stop writing to stdout.
